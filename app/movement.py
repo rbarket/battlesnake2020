@@ -16,16 +16,32 @@ def chooseDir(data):
 	head = [bodyParts[0]['x'],bodyParts[0]['y']] # head of snake
 	width = data['board']['width']
 	height = data['board']['height']
+	hp = data['you']['health']
+	foods = data['board']['food']
 	
+	
+	# Turning dictionaries into lists	
+
 	occupiedList = [] # List of spaces currently occupied
 	for bodyPart in bodyParts:
-		part = [bodyPart['x'], bodyPart['y']]
-		occupiedList.append(part)
+		item = [bodyPart['x'], bodyPart['y']]
+		occupiedList.append(item)
+
+	foodList = []
+	for food in foods:
+		item = [food['x'], food['y']]
+		foodList.append(item)
+
+	#
 
 	legalMoves = possibleMoves(occupiedList, width, height, head) # only moves that are possible
+	
+	# if hp < 50:
+	# 	getFood(legalMoves, foodList, head)
+	print(width)
+	print(height)
 	print(legalMoves)
-	res = random.choice(legalMoves)
-	print(res)
+	res = random.choice(list(legalMoves.keys()))
 	return res
 
 def possibleMoves(occupied, width, height, head):
@@ -41,18 +57,22 @@ def possibleMoves(occupied, width, height, head):
 	list: possible moves
 	
 	"""
-	moves = ['up','down','left','right'] # left, right, down and up
-	if ([head[0]-1,head[1]] in occupied) or (head[0]-1 < 0) : # left is occupied OR left is out of bounds
-		moves.remove('left') # remove left from possible moves
+	
+	moves = {}
+	if not (([head[0]-1,head[1]] in occupied) or (head[0]-1 < 0)) : # left is occupied OR left is out of bounds
+		item = {'left': [head[0]-1,head[1]] }
+		moves.update(item)
+	if not (([head[0]+1,head[1]] in occupied) or (head[0]+1 > width-1)) : # right
+		item = {'right': [head[0]+1,head[1]] }
+		moves.update(item) 
 
-	if ([head[0]+1,head[1]] in occupied) or (head[0]+1 > width) : # right
-		moves.remove('right') 
+	if not (([head[0],head[1]-1] in occupied) or (head[1]-1 < 0)) : # up
+		item = {'up': [head[0],head[1]-1] }
+		moves.update(item)
 
-	if ([head[0],head[1]-1] in occupied) or (head[1]-1 < 0) : # up
-		moves.remove('up') 
-
-	if ([head[0],head[1]+1] in occupied) or (head[1]-1 > height) : # down
-		moves.remove('down') 
+	if not (([head[0],head[1]+1] in occupied) or (head[1]+1 > height-1)) : # down
+		item = {'down': [head[0],head[1]+1] }
+		moves.update(item)
 
 	return moves
 
