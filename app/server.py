@@ -1,6 +1,7 @@
 import json
 import os
 import random
+import movement
 
 import bottle
 from bottle import HTTPResponse
@@ -44,11 +45,11 @@ def move():
     Your response must include your move of up, down, left, or right.
     """
     data = bottle.request.json
-    print("MOVE:", json.dumps(data))
+    # print(json.dumps(data, indent=4))
 
     # Choose a random direction to move in
     directions = ["up", "down", "left", "right"]
-    move = random.choice(directions)
+    move = movement.choose_dir(data)
 
     # Shouts are messages sent to all the other snakes in the game.
     # Shouts are not displayed on the game board.
@@ -68,7 +69,7 @@ def end():
     Called every time a game with your snake in it ends.
     """
     data = bottle.request.json
-    print("END:", json.dumps(data))
+    # print("END:", json.dumps(data))
     return HTTPResponse(status=200)
 
 
