@@ -1,7 +1,7 @@
 import json
 import os
 import random
-import movement
+from moveChoice import chooseDir
 
 import bottle
 from bottle import HTTPResponse
@@ -49,7 +49,7 @@ def move():
 
     # Choose a random direction to move in
     directions = ["up", "down", "left", "right"]
-    move = movement.chooseDir(data)
+    move = chooseDir(data)
 
     # Shouts are messages sent to all the other snakes in the game.
     # Shouts are not displayed on the game board.
