@@ -1,11 +1,11 @@
 import json
 import os
 import random
-from moveChoice import chooseDir
 
 import bottle
 from bottle import HTTPResponse
 
+from moveChoice import chooseDir
 
 @bottle.route("/")
 def index():
@@ -45,7 +45,8 @@ def move():
     Your response must include your move of up, down, left, or right.
     """
     data = bottle.request.json
-    # print(json.dumps(data, indent=4))
+    print("turn number {}".format(data['turn']))
+    print(json.dumps(data, indent=4))
 
     # Choose a random direction to move in
     directions = ["up", "down", "left", "right"]

@@ -1,6 +1,7 @@
 import random
 import json
 import optimalFood
+from moveScore import scoreMove
 
 def chooseDir(data):
 	"""Returns up down left or right based on best choice of movements
@@ -18,7 +19,7 @@ def chooseDir(data):
 	height = data['board']['height']
 	hp = data['you']['health']
 	foods = data['board']['food']
-	print(data['turn'])
+	snakes = data['board']['snakes']
 	
 	# Turning dictionaries into lists	
 
@@ -35,8 +36,13 @@ def chooseDir(data):
 	#
 
 	legalMoves = possibleMoves(occupiedList, width, height, head) # only moves that are possible
-
-	res = optimalFood.getFood(legalMoves, foodList, head)
+	bestMove = scoreMove(legalMoves, snakes, width, height)
+	if (hp < 75):
+		print('getting food')
+		res = optimalFood.getFood(legalMoves, foodList, head)
+	else:
+		print('best move of rando choice')
+		res = random.choice(bestMove)
 	return res
 
 def possibleMoves(occupied, width, height, head):

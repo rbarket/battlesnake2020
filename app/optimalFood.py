@@ -29,10 +29,10 @@ def getFood(moves, foods, head):
 		yDist = abs(coord[1]- bestFood[1]) # y distance between move and food
 		hyp = xDist + yDist #distance between move and food
 
-		print('move: {}, coord: {}, xDist:{}, yDist:{}, hypotenuse:{}, food:{}'.format(move, coord, xDist, yDist, hyp, food))
+		# print('move: {}, coord: {}, xDist:{}, yDist:{}, hypotenuse:{}, food:{}'.format(move, coord, xDist, yDist, hyp, food))
 		if (hyp < mini):
 			mini = hyp
 			bestMove = move
-		print('best move is {}'.format(bestMove))
+		# print('best move is {}'.format(bestMove))
 
 	return bestMove
