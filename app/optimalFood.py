@@ -27,7 +27,7 @@ def getFood(moves, occupied, foods, head):
 			bestFood = food # current best food
 			foodDict.update({bestFood: 1}) # new best food = 1
 
-
+	print("bestfood: {}".format(bestFood))
 	# # Score each move
 	# foodMax = 0 # highest food score
 	# for food, score in foodDict.items():
