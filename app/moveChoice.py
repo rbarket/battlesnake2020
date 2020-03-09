@@ -32,7 +32,7 @@ def chooseDir(data):
 
 	foodList = []
 	for food in foods:
-		item = [food['x'], food['y']]
+		item = (food['x'], food['y'])
 		foodList.append(item)
 
 	#

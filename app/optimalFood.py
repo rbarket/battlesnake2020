@@ -12,7 +12,7 @@ def getFood(moves, occupied, foods, head):
 
 	"""
 	minimum = 100000 # smallest distance from head to food
-	bestFood = [1000,1000] # arbitrary for initialization
+	bestFood = (1000,1000) # arbitrary for initialization
 	foodDict = {bestFood: 0} # dictionary of food coord + score e.g {[3,7]: 2, [4,5]: 5}
 	
 	# Find the best food and give it a score of 1
