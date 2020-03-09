@@ -24,9 +24,11 @@ def chooseDir(data):
 	# Turning dictionaries into lists	
 
 	occupiedList = [] # List of spaces currently occupied
-	for bodyPart in bodyParts:
-		item = [bodyPart['x'], bodyPart['y']]
-		occupiedList.append(item)
+	for snake in snakes:
+		snakeBody = snake['body'] # snakeBody = list of body parts for one snake
+		for piece in snakeBody: # iterate through each body piece of that snake
+			part = [piece['x'], piece['y']]
+			occupiedList.append(part)
 
 	foodList = []
 	for food in foods:
@@ -39,7 +41,7 @@ def chooseDir(data):
 	bestMove = scoreMove(legalMoves, snakes, width, height)
 	if (hp < 75):
 		print('getting food')
-		res = optimalFood.getFood(legalMoves, foodList, head)
+		res = optimalFood.getFood(legalMoves, occupiedList, foodList, head)
 	else:
 		print('best move of rando choice')
 		res = random.choice(bestMove)
