@@ -41,7 +41,7 @@ def chooseDir(data):
 	bestMove = scoreMove(legalMoves, snakes, width, height)
 	if (hp < 75):
 		print('getting food')
-		res = optimalFood.getFood(legalMoves, occupiedList, foodList, head)
+		res = optimalFood.getFood(legalMoves, occupiedList, foodList, head, width, height)
 	else:
 		print('best move of rando choice')
 		res = random.choice(bestMove)
@@ -62,18 +62,18 @@ def possibleMoves(occupied, width, height, head):
 	"""
 	
 	moves = {}
-	if not (((head[0]-1,head[1]) in occupied) or (head[0]-1 < 0)) : # left is occupied OR left is out of bounds
+	if not (( (head[0]-1,head[1]) in occupied) or (head[0]-1 < 0)) : # left is occupied OR left is out of bounds
 		item = {'left': [head[0]-1,head[1]] }
 		moves.update(item)
-	if not (((head[0]+1,head[1]) in occupied) or (head[0]+1 > width-1)) : # right
+	if not (( (head[0]+1,head[1]) in occupied) or (head[0]+1 > width-1)) : # right
 		item = {'right': [head[0]+1,head[1]] }
 		moves.update(item) 
 
-	if not (((head[0],head[1]-1) in occupied) or (head[1]-1 < 0)) : # up
+	if not (( (head[0],head[1]-1) in occupied) or (head[1]-1 < 0)) : # up
 		item = {'up': [head[0],head[1]-1] }
 		moves.update(item)
 
-	if not (((head[0],head[1]+1) in occupied) or (head[1]+1 > height-1)) : # down
+	if not (( (head[0],head[1]+1) in occupied) or (head[1]+1 > height-1)) : # down
 		item = {'down': [head[0],head[1]+1] }
 		moves.update(item)
 
