@@ -1,7 +1,7 @@
 import random
 import json
-import optimalFood
-from moveScore import scoreMove
+import app.optimalFood
+from app.moveScore import scoreMove
 
 def chooseDir(data):
 	"""Returns up down left or right based on best choice of movements
@@ -43,7 +43,7 @@ def chooseDir(data):
 		print('getting food')
 		res = optimalFood.getFood(legalMoves, occupiedList, foodList, head, width, height)
 	else:
-		print('best move of rando choice')
+		print('best move of random choice')
 		res = random.choice(bestMove)
 	return res
 

@@ -41,15 +41,30 @@ def check(move, occupied, width, height):
 	_Returns:
 	score (int): score of move
 	"""
+
+	def coordMaker(coord):
+		"""
+		_Purpose:
+		makes up down left right coordinates of the current coordinated passed to it
+		"""
+
+		up = (coord[0], coord[1]-1)
+		down = (coord[0], coord[1]+1)
+		left = (coord[0]-1, coord[1])
+		right = (coord[0]-1, coord[1])
+		spots = [coord, up, down, left, right]
+		return spots
+
 	score = 0
-	if not (([move[0]-1,move[1]] in occupied) or (move[0]-1 < 0)): #left
-		score += 1
-	if not (([move[0]+1,move[1]] in occupied) or (move[0]+1 > width-1)): # right
-		score += 1
-	if not (([move[0],move[1]-1] in occupied) or (move[1]-1 < 0)): # up
-		score += 1
-	if not (([move[0],move[1]+1] in occupied) or (move[1]+1 > height-1)): #down
-		score += 1
+	for pos in coordMaker(move):		
+		if not (([pos[0]-1,pos[1]] in occupied) or (pos[0]-1 < 0)): #left
+			score += 1
+		if not (([pos[0]+1,pos[1]] in occupied) or (pos[0]+1 > width-1)): # right
+			score += 1
+		if not (([pos[0],pos[1]-1] in occupied) or (pos[1]-1 < 0)): # up
+			score += 1
+		if not (([pos[0],pos[1]+1] in occupied) or (pos[1]+1 > height-1)): #down
+			score += 1
 	return score
 
 

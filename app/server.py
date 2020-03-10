@@ -5,7 +5,7 @@ import random
 import bottle
 from bottle import HTTPResponse
 
-from moveChoice import chooseDir
+from app.moveChoice import chooseDir
 
 @bottle.route("/")
 def index():
@@ -27,7 +27,7 @@ def start():
     Your response will control how your snake is displayed on the board.
     """
     data = bottle.request.json
-    print("START:", json.dumps(data))
+    # print("START:", json.dumps(data))
 
     response = {"color": "#00000", "headType": "dead", "tailType": "fat-rattle"} # #F1F1F1
     return HTTPResponse(
@@ -46,7 +46,7 @@ def move():
     """
     data = bottle.request.json
     print("turn number {}".format(data['turn']))
-    print(json.dumps(data, indent=4))
+    # print(json.dumps(data, indent=4))
 
     # Choose a random direction to move in
     directions = ["up", "down", "left", "right"]
