@@ -1,7 +1,7 @@
 import random
 import json
 # <<<<<<< HEAD
-import app.optimalFood
+import app.optimalFood as foodCode
 from app.moveScore import scoreMove
 # =======
 # import optimalFood
@@ -48,7 +48,7 @@ def chooseDir(data):
 	bestMove = scoreMove(legalMoves, snakes, width, height)
 	if (hp < 75):
 		print('getting food')
-		res = optimalFood.getFood(legalMoves, occupiedList, foodList, head, width, height)
+		res = foodCode.getFood(legalMoves, occupiedList, foodList, head, width, height)
 	else:
 # <<<<<<< HEAD
 		print('best move of random choice')
