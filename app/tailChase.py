@@ -24,11 +24,17 @@ def myChase(head, tail, moveList):
     distance = abs(head[0] - tail[0]) + abs(head[1] - tail[1]) # calculate the distance between head and tail
     
     #Simply move towards the closest direction in order to follow the tail
-    
     for direction in moveList.items():
         if (direction < distance):
             movetoTail = direction
     return movetoTail
 
 def enemyChase(head, moveList, enemyBodyList):
-    # @TODO FUNCTION NOT CHANGED
+    
+    # Initialize values
+
+    moveToEnemy = 'up' # arbitrary value
+    distance = abs(head[0] - tail[0]) + abs(head[1] - tail[1]) # calculate the distance between head and enemy's tail
+
+def closestEnemy(enemyBodyList):
+    #@DO SOMETHING

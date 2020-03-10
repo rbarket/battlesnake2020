@@ -46,7 +46,7 @@ def chooseDir(data):
 
 	legalMoves = possibleMoves(occupiedList, width, height, head) # only moves that are possible
 	bestMove = scoreMove(legalMoves, snakes, width, height)
-	if (hp < 75):
+	if (hp < 50):
 		print('getting food')
 		res = optimalFood.getFood(legalMoves, occupiedList, foodList, head, width, height)
 	else:
@@ -55,7 +55,7 @@ def chooseDir(data):
 		res = random.choice(bestMove)
 # =======
 # 		print('chasing tail')
-# 		res = tailChase.action(legalMoves, occupiedList, head, tail, width, height)
+# 		res = tailChase.action(legalMoves, occupiedList, head, tail, width, height, hp)
 # >>>>>>> 17df5e2ef968ac0064231ff335d4628d00c1a883
 	return res
 
