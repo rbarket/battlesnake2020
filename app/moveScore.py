@@ -30,13 +30,14 @@ def scoreMove(moves, snakes, width, height):
 def check(move, occupied, width, height, n=1):
 	"""
 	_Purpose:
-	takes a move coord and returns a score (max 4) based on how many free spaces are directly around the move
+	takes a move coord and returns a score based on how many free spaces are around the move of distance n
 
 	_Parameters:
 	move (list): xy coord of the move
 	occupied (list): xy coords all occupied spaces on board 
 	width (int): width of board
 	height (int): height of board
+	n (int): how many spaces ahead to look (default 1)
 
 	_Returns:
 	score (int): score of move
