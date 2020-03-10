@@ -6,7 +6,7 @@ def scoreMove(moves, snakes, width, height):
 	for snake in snakes:
 		snakeBody = snake['body'] # snakeBody = list of body parts for one snake
 		for piece in snakeBody: # iterae through each body piece of that snake
-			part = [piece['x'], piece['y']]
+			part = (piece['x'], piece['y'])
 			snakeList.append(part)
 
 	scoreDict = {}
@@ -56,6 +56,7 @@ def check(move, occupied, width, height):
 		return spots
 
 	score = 0
+
 	for pos in coordMaker(move):		
 		if not (( (pos[0]-1,pos[1]) in occupied) or (pos[0]-1 < 0)): #left
 			score += 1

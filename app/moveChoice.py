@@ -75,18 +75,18 @@ def possibleMoves(occupied, width, height, head):
 	
 	moves = {}
 	if not (( (head[0]-1,head[1]) in occupied) or (head[0]-1 < 0)) : # left is occupied OR left is out of bounds
-		item = {'left': [head[0]-1,head[1]] }
+		item = {'left': (head[0]-1,head[1]) }
 		moves.update(item)
 	if not (( (head[0]+1,head[1]) in occupied) or (head[0]+1 > width-1)) : # right
-		item = {'right': [head[0]+1,head[1]] }
+		item = {'right': (head[0]+1,head[1]) }
 		moves.update(item) 
 
 	if not (( (head[0],head[1]-1) in occupied) or (head[1]-1 < 0)) : # up
-		item = {'up': [head[0],head[1]-1] }
+		item = {'up': (head[0],head[1]-1) }
 		moves.update(item)
 
 	if not (( (head[0],head[1]+1) in occupied) or (head[1]+1 > height-1)) : # down
-		item = {'down': [head[0],head[1]+1] }
+		item = {'down': (head[0],head[1]+1) }
 		moves.update(item)
 
 	return moves
