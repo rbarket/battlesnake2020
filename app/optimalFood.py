@@ -31,12 +31,17 @@ def getFood(moves, occupied, foods, head, width, height):
 	# Score each move
 	foodMax = 0 # highest food score
 	for food, score in foodDict.items():
-		score += check(food, occupied, width, height)
+		up = (food[0], food[1]-1)
+		down = (food[0], food[1]+1)
+		left = (food[0]-1, food[1])
+		right = (food[0]-1, food[1])
+		spots = [food, up, down, left, right]
+		score += check(spots, occupied, width, height)
 		if score > foodMax:
 			bestFood = food
 
 	print("bestFood: {}".format(bestFood))
-	
+
 	mini = 100000 # smallest distance from move to food
 	bestMove ='up' # arbitrary for initialization
 	for move, coord in moves.items(): # e.g move: 'left' and coord: [3,5]
@@ -52,13 +57,13 @@ def getFood(moves, occupied, foods, head, width, height):
 
 	return bestMove
 
-def check(food, occupied, width, height):
+def check(spotList, occupied, width, height):
 	"""
 	_Purpose:
 	takes a move coord and returns a score (max 4) based on how many free spaces are directly around the move
 
 	_Parameters:
-	move (list): xy coord of the move
+	spotList (list): xy tuples of positions to score
 	occupied (list): xy coords all occupied spaces on board 
 	width (int): width of board
 	height (int): height of board
@@ -67,12 +72,13 @@ def check(food, occupied, width, height):
 	score (int): score of move
 	"""
 	score = 0
-	if not (( (food[0]-1,food[1]) in occupied) or (food[0]-1 < 0)): #left
-		score += 1
-	if not (( (food[0]+1,food[1]) in occupied) or (food[0]+1 > width-1)): # right
-		score += 1
-	if not (( (food[0],food[1]-1) in occupied) or (food[1]-1 < 0)): # up
-		score += 1
-	if not (( (food[0],food[1]+1) in occupied) or (food[1]+1 > height-1)): #down
-		score += 1
+	for spot in spotList:
+		if not (( (spot[0]-1,spot[1]) in occupied) or (spot[0]-1 < 0)): #left
+			score += 1
+		if not (( (spot[0]+1,spot[1]) in occupied) or (spot[0]+1 > width-1)): # right
+			score += 1
+		if not (( (spot[0],spot[1]-1) in occupied) or (spot[1]-1 < 0)): # up
+			score += 1
+		if not (( (spot[0],spot[1]+1) in occupied) or (spot[1]+1 > height-1)): #down
+			score += 1
 	return score
