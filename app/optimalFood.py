@@ -1,5 +1,5 @@
 from math import sqrt
-def getFood(moves, occupied, foods, head):
+def getFood(moves, occupied, foods, head, width, height):
 	""" Decides best food based on distance + available space
 
 	Parameters:
@@ -11,6 +11,7 @@ def getFood(moves, occupied, foods, head):
 	str: best move
 
 	"""
+
 	minimum = 100000 # smallest distance from head to food
 	bestFood = (1000,1000) # arbitrary for initialization
 	foodDict = {bestFood: 0} # dictionary of food coord + score e.g {[3,7]: 2, [4,5]: 5}
@@ -27,14 +28,15 @@ def getFood(moves, occupied, foods, head):
 			bestFood = food # current best food
 			foodDict.update({bestFood: 1}) # new best food = 1
 
+	# Score each move
+	foodMax = 0 # highest food score
+	for food, score in foodDict.items():
+		score += check(food, occupied, width, height)
+		if score > foodMax:
+			bestFood = food
 
-	# # Score each move
-	# foodMax = 0 # highest food score
-	# for food, score in foodDict.items():
-	# 	newScore = score += check(food, )
-
-
-
+	print("bestFood: {}".format(bestFood))
+	
 	mini = 100000 # smallest distance from move to food
 	bestMove ='up' # arbitrary for initialization
 	for move, coord in moves.items(): # e.g move: 'left' and coord: [3,5]
@@ -65,12 +67,12 @@ def check(food, occupied, width, height):
 	score (int): score of move
 	"""
 	score = 0
-	if not (([food[0]-1,food[1]] in occupied) or (food[0]-1 < 0)): #left
+	if not (( (food[0]-1,food[1]) in occupied) or (food[0]-1 < 0)): #left
 		score += 1
-	if not (([food[0]+1,move[1]] in occupied) or (food[0]+1 > width-1)): # right
+	if not (( (food[0]+1,food[1]) in occupied) or (food[0]+1 > width-1)): # right
 		score += 1
-	if not (([food[0],move[1]-1] in occupied) or (food[1]-1 < 0)): # up
+	if not (( (food[0],food[1]-1) in occupied) or (food[1]-1 < 0)): # up
 		score += 1
-	if not (([food[0],food[1]+1] in occupied) or (food[1]+1 > height-1)): #down
+	if not (( (food[0],food[1]+1) in occupied) or (food[1]+1 > height-1)): #down
 		score += 1
 	return score
