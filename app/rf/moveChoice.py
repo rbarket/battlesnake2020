@@ -53,11 +53,13 @@ def action(data):
 	legalMoves = possibleMoves(occupiedList, width, height, head) # only moves that are possible
 	# Create dictionary of lists of food the snake can go for
 	foodMoves = optimalFood(legalMoves, foodList, head)	
-	
+	# Choose which stratergy to implement, given the information we have
+	result = stratMoves(legalMoves, occupiedList, foodMoves, head, hp)
+
 	#res = result
 	#res = optimalFood.getFood(legalMoves, foodList, head)
 	#return res
-	return None
+	return result
 
 def possibleMoves(occupied, width, height, head):
 	"""
@@ -94,3 +96,13 @@ def possibleMoves(occupied, width, height, head):
 
 	return moves
 
+def stratMoves(legalMoves, occupiedList, foodList, head, hp):
+	# Will get food if hp is less than 75
+	if (hp < 75):
+    		print('getting food')
+		res = optimalFood.getFood(legalMoves, occupiedList, foodList, head)
+	# Will chase its own tail if not hungry
+	else:
+		print('chasing tail')
+		res = tailChase()
+	return res

@@ -1,7 +1,7 @@
 import json
 import os
 import random
-import movement
+import moveChoice
 
 import bottle
 from bottle import HTTPResponse

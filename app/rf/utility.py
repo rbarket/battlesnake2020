@@ -1,5 +1,3 @@
-#Utility class
-
 def smallestDistanceItem(itemA, itemB, returnType):
     """
     _Method: smallestDistanceItem(itemA, itemB, returnType):
@@ -25,7 +23,8 @@ def smallestDistanceItem(itemA, itemB, returnType):
     closestItem = [0,0]  
     itemBList = {}
 
-    for posB,  in itemB.items():
+    #Possible bug in for loop declaration (Look into it)
+    for posB, itemB.item in itemB.items():
         distance = abs(itemA[0] - posB[0]) + abs(itemA[1] - posB[1])
         if (distance < smallestVal):
             smallestVal = distance
@@ -44,6 +43,22 @@ def smallestDistanceItem(itemA, itemB, returnType):
         return smallestVal, closestItem, itemBList
 
 def checkBubbleScore(point, occupied, width, height):
+    """
+    _Method: checkBubbleScore(point, occupied, width, height)
+
+    _Purpose:
+    To check the left, right, down, and up position, of the current position we are evaluating and
+    add +1 to the score, if those positions are free
+
+    _Parameters:
+	point(dict): Coordinates of the current position we are evaluating
+    occupied(dict): List of coordinates that are currently occupied
+    width(int): Maximum width of the game board
+    height(int): Maximum height of the game board
+
+    _Returns:
+	score(int): Initialized at 0, adds 1 to the score if none of the directions (Up, Left, Right, Down) are occupied, and has a maximum score of 4
+    """
     score = 0
     # Check if the position LEFT of the head is occupied OR out of bounds
     if not (([point[0]-1,point[1]] in occupied) or (point[0]-1 < 0)) :
@@ -59,7 +74,24 @@ def checkBubbleScore(point, occupied, width, height):
 		score += 1
     return score
 
+#
 def checkBubbleUpdate(point, occupied, width, height):
+    """
+    _Method: checkBubbleScore(point, occupied, width, height)
+
+    _Purpose:
+    To check the left, right, down, and up position, of the current position we are evaluating and
+    add +1 to the score, if those positions are free
+
+    _Parameters:
+	point(dict): Coordinates of the current position we are evaluating
+    occupied(dict): List of coordinates that are currently occupied
+    width(int): Maximum width of the game board
+    height(int): Maximum height of the game board
+
+    _Returns:
+	score(int): Initialized at 0, adds 1 to the score if none of the directions (Up, Left, Right, Down) are occupied, and has a maximum score of 4
+    """
     score = 0
     # Check if the position LEFT of the head is occupied OR out of bounds
     if not (([point[0]-1,point[1]] in occupied) or (point[0]-1 < 0)) :
