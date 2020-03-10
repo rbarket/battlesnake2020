@@ -52,18 +52,18 @@ def check(move, occupied, width, height):
 		down = (coord[0], coord[1]+1)
 		left = (coord[0]-1, coord[1])
 		right = (coord[0]-1, coord[1])
-		spots = [coord, up, down, left, right]
+		spots = [up, down, left, right]
 		return spots
 
 	score = 0
 	for pos in coordMaker(move):		
-		if not (([pos[0]-1,pos[1]] in occupied) or (pos[0]-1 < 0)): #left
+		if not (( (pos[0]-1,pos[1]) in occupied) or (pos[0]-1 < 0)): #left
 			score += 1
-		if not (([pos[0]+1,pos[1]] in occupied) or (pos[0]+1 > width-1)): # right
+		if not (( (pos[0]+1,pos[1]) in occupied) or (pos[0]+1 > width-1)): # right
 			score += 1
-		if not (([pos[0],pos[1]-1] in occupied) or (pos[1]-1 < 0)): # up
+		if not (( (pos[0],pos[1]-1) in occupied) or (pos[1]-1 < 0)): # up
 			score += 1
-		if not (([pos[0],pos[1]+1] in occupied) or (pos[1]+1 > height-1)): #down
+		if not (( (pos[0],pos[1]+1) in occupied) or (pos[1]+1 > height-1)): #down
 			score += 1
 	return score
 

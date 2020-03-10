@@ -45,7 +45,7 @@ def move():
     Your response must include your move of up, down, left, or right.
     """
     data = bottle.request.json
-    print("turn number {}".format(data['turn']))
+    print("\n turn number {}".format(data['turn']))
     # print(json.dumps(data, indent=4))
 
     # Choose a random direction to move in
