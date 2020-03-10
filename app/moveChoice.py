@@ -1,7 +1,13 @@
 import random
 import json
+# <<<<<<< HEAD
 import app.optimalFood
 from app.moveScore import scoreMove
+# =======
+# import optimalFood
+# import tailChase
+# from moveScore import scoreMove
+# >>>>>>> 17df5e2ef968ac0064231ff335d4628d00c1a883
 
 def chooseDir(data):
 	"""Returns up down left or right based on best choice of movements
@@ -15,6 +21,7 @@ def chooseDir(data):
 	"""
 	bodyParts = data['you']['body'] # list of my own body parts
 	head = (bodyParts[0]['x'],bodyParts[0]['y']) # head of snake
+	tail = (bodyParts[-1]['x'], bodyParts[-1]['y'])
 	width = data['board']['width']
 	height = data['board']['height']
 	hp = data['you']['health']
@@ -43,8 +50,13 @@ def chooseDir(data):
 		print('getting food')
 		res = optimalFood.getFood(legalMoves, occupiedList, foodList, head, width, height)
 	else:
+# <<<<<<< HEAD
 		print('best move of random choice')
 		res = random.choice(bestMove)
+# =======
+# 		print('chasing tail')
+# 		res = tailChase.action(legalMoves, occupiedList, head, tail, width, height)
+# >>>>>>> 17df5e2ef968ac0064231ff335d4628d00c1a883
 	return res
 
 def possibleMoves(occupied, width, height, head):

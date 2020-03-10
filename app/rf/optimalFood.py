@@ -23,6 +23,5 @@ def getFoodList(moves, foodList, head):
 
 def getFood(moves, occupied, foodList, head):
 	
-	# Initialize Variables
-	bestFood = {food: 0} #dictionairy
-	for food in foodList:
+	smallestDistanceItem(head, foodList, "itemBList")
+	

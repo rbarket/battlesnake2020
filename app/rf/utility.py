@@ -73,7 +73,7 @@ def checkBubbleScore(point, occupied, width, height):
 	if not (([point[0],point[1]+1] in occupied) or (point[1]+1 > height-1)) :
 		score += 1
     return score
-
+    
 #
 def checkBubbleUpdate(point, occupied, width, height):
     """
