@@ -12,14 +12,8 @@ def scoreMove(moves, snakeList, width, height):
 	scoreDict = {}
 
 	for move, coord in moves.items(): 
-		if (move == 'down'):
-			scoreDict.update({'down': check(coord, snakeList, width, height, n=2)})
-		if (move == 'up'):
-			scoreDict.update({'up': check(coord, snakeList, width, height, n=2)})
-		if (move == 'right'):
-			scoreDict.update({'right': check(coord, snakeList, width, height, n=2)})
-		if (move == 'left'):
-			scoreDict.update({'left': check(coord, snakeList, width, height, n=2)})
+		scoreDict.update({move: check(coord, snakeList, width, height, n=2)})
+
 
 	max_val = max(scoreDict.values())
 	bestMove = [k for k, v in scoreDict.items() if v == max_val] # Note: will return a list with only 1 item
