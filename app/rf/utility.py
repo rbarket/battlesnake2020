@@ -127,7 +127,7 @@ def checkBubbleOutBound(point, checkFor, width, height):
 
     moves = {}
 
-    # Check if each the list of directions we obtained includes unfavourable elements OR if it's out of bounds
+    # Check if each of the list of directions we obtained includes unfavourable elements OR if it's out of bounds
     # We only add a list of directions from the list we obtained if they are not unfavourable
     
     # LEFT
@@ -161,9 +161,9 @@ def closestItem(point, itemList):
     itemList(dict): List of items we want to find which are the closest
 
     Returns:
-	closestItem(dict): Coordinates for the closest item from point
+	closestItem(tuple): Coordinates for the closest item from point
     """
-    closestItem = {}
+    closestItem = (-1,-1)
     # Arbitrary for initialization and will be replaced when a smaller distance is found
     smallestDistance = 10000 
 
@@ -173,7 +173,7 @@ def closestItem(point, itemList):
         evaluatedDistance = abs(itemCoord[0] - point[0]) + abs(itemCoord[1] - point[1])
 
         # test
-        print('move: {}, coord: {}, xDist:{}, yDist:{}, hypotenuse:{}, food:{}'.format(move, coord, xDist, yDist, hyp, food))
+        # print('move: {}, coord: {}, xDist:{}, yDist:{}, hypotenuse:{}, food:{}'.format(move, coord, xDist, yDist, hyp, food))
         
         if (evaluatedDistance > smallestDistance):
             smallestDistance = evaluatedDistance
