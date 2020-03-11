@@ -1,7 +1,8 @@
 from math import sqrt
 import rf.utility as util
 
-def getFoodList(moves, foodList, head):
+# @TODO INCOMPLETE
+def getFoodListTODO(moves, foodList, head):
 	""" 
 	@TODO FUNCTION UNCONSTRUCTED - At this stage a list of food is uneeded
 	_Purpose: Create a list of the best choice for food
@@ -59,6 +60,8 @@ def getFood(occupied, foodList, head, width, height):
 	# -2 if enemy head directly beside food
 	@TODO NEED TAILCHASE FUNCTION TO COMPLETE
 	"""
+
+	#SCORE_FOOD @END
 
 	"""
 	Possible bug in this function because bestFood may only be coordinates

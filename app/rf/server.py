@@ -5,7 +5,7 @@ import random
 import bottle
 from bottle import HTTPResponse
 
-from rF.moveChoice import action
+from rf.moveChoice import action
 
 @bottle.route("/")
 def index():

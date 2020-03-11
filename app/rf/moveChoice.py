@@ -1,9 +1,10 @@
 import random
 import json
 # <<<<<<<<< HEAD
-import rF.optimalFood as bestFood
-import rF.utility as util
-from rF.moveScore import scoreMove
+import rf.optimalFood as bestFood
+import rf.utility as util
+import rf.tailChase as personality
+from rf.moveScore import scoreMove
 # >>>>>>>>> 17df5e2ef968ac0064231ff335d4628d00c1a883
 
 def action(data):
@@ -46,7 +47,6 @@ def action(data):
 	for food in foodLoc:
 		item = [food['x'], food['y']]
 		foodList.append(item)
-	######
 	
 	###CREATE LIST OF OCCUPIED SPACES###
 	# List of coordinates currently occupied by all snakes on the board
@@ -58,7 +58,6 @@ def action(data):
 		for piece in snake['body']:
 			part = (piece['x'], piece['y'])
 			occupiedList.append(part)
-	######
 
 	# DATA_CONSTRUCT @END
 
@@ -75,7 +74,7 @@ def action(data):
 	#return res
 	return result
 
-def stratMoves(legalMoves, occupiedList, foodList, head, hp):
+def stratMoves(legalMoves, occupiedList, foodList, head, tail, hp):
 	# Will get food if hp is less than 75
 	if (hp < 75):
     		print('getting food')
@@ -83,5 +82,7 @@ def stratMoves(legalMoves, occupiedList, foodList, head, hp):
 	# Will chase its own tail if not hungry
 	else:
 		print('chasing tail')
-		res = tailChase.action()
+		# Currently has a defensive/non-agressive personality
+		# Where we will always chase our tail by default
+		res = personality.myChase(head, tail, legalMoves)
 	return res
