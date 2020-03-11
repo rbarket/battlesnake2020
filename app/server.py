@@ -5,7 +5,7 @@ import random
 import bottle
 from bottle import HTTPResponse
 
-from app.moveChoice import chooseDir
+from app.moveChoice import action
 
 @bottle.route("/")
 def index():
@@ -45,12 +45,12 @@ def move():
     Your response must include your move of up, down, left, or right.
     """
     data = bottle.request.json
-    print("\n turn number {}".format(data['turn']))
+
     # print(json.dumps(data, indent=4))
 
     # Choose a random direction to move in
     directions = ["up", "down", "left", "right"]
-    move = chooseDir(data)
+    move = action(data)
 
     # Shouts are messages sent to all the other snakes in the game.
     # Shouts are not displayed on the game board.

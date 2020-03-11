@@ -1,11 +1,11 @@
 import random
 import json
-# <<<<<<<<< HEAD
+
 import rf.optimalFood as bestFood
 import rf.utility as util
 import rf.tailChase as personality
 from rf.moveScore import scoreMove
-# >>>>>>>>> 17df5e2ef968ac0064231ff335d4628d00c1a883
+
 
 def action(data):
 	"""

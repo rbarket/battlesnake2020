@@ -53,7 +53,7 @@ def check(move, occupied, width, height, n=1):
 	right = (move[0]+1, move[1])
 
 	score = 0
-
+	occupied.append(move)
 	# for pos in coordMaker(move):
 
 
