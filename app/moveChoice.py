@@ -46,7 +46,7 @@ def action(data):
 	
 	legalMoves = util.checkBubbleOutBound(head, occupiedList, width, height) # only moves that are possible
 	
-	if (hp < 101):
+	if (hp < 75):
 		print('getting food')
 		res = foodCode.getFood(legalMoves, occupiedList, foodList, head, width, height)
 		
