@@ -1,7 +1,10 @@
 import random
 import json
-import optimalFood
-
+# <<<<<<<<< HEAD
+import rF.optimalFood as bestFood
+import rF.utility as util
+from rF.moveScore import scoreMove
+# >>>>>>>>> 17df5e2ef968ac0064231ff335d4628d00c1a883
 
 def action(data):
 	"""
@@ -22,6 +25,7 @@ def action(data):
 	# My Body data
 	bodyParts = data['you']['body'] #List of my own body parts (May not need because we are inside of JSON[snakes] when avoiding collision)
 	head = [bodyParts[0]['x'],bodyParts[0]['y']] #My head
+	tail = bodyParts[-1]['x'], bodyParts[-1]['y'] #My tail
 	hp = data['you']['health'] #My health
 		
 	# Game Board Data
@@ -34,23 +38,33 @@ def action(data):
 	print("Turn: {}".format(data['turn']))
 
 	# Transforming dictionary into lists
-	occupiedList = [] # List of coordinates currently occupied
-	for myBody in bodyParts: #@TODOLETE MAY NOT NEED BECAUSE WE ARE LISTED INSIDE snakeList
-		item = [myBody['x'], myBody['y']]
-		occupiedList.append(item)
-		
-	foodList = [] # List of coordinates with food items
+
+	###CREATE LIST OF FOOD###
+	# List of coordinates currently ocuppied by food
+	foodList = []
+	# Add and iterate through list of food on the game board
 	for food in foodLoc:
 		item = [food['x'], food['y']]
 		foodList.append(item)
-
-	snakeList = [] # List of all snakes on the board
+	######
 	
+	###CREATE LIST OF OCCUPIED SPACES###
+	# List of coordinates currently occupied by all snakes on the board
+	occupiedList = []
+	# Add each parts of the snake into the occupied list
+	# Iterate through list of snakes
+	for snake in allSnakes:
+    	# Add and iterate through list of bodyparts on snake
+		for piece in snake['body']:
+			part = (piece['x'], piece['y'])
+			occupiedList.append(part)
+	######
+
 	# DATA_CONSTRUCT @END
 
 
 	# Create dictionary of lists of next moves that do not run into occupied space
-	legalMoves = possibleMoves(occupiedList, width, height, head) # only moves that are possible
+	legalMoves = util.checkBubbleOutBound(head, occupiedList, width, height)
 	# Create dictionary of lists of food the snake can go for
 	foodMoves = optimalFood(legalMoves, foodList, head)	
 	# Choose which stratergy to implement, given the information we have
@@ -60,41 +74,6 @@ def action(data):
 	#res = optimalFood.getFood(legalMoves, foodList, head)
 	#return res
 	return result
-
-def possibleMoves(occupied, width, height, head):
-	"""
-	_Purpose:
-	Returns list of moves that do not run into occupied space
-
-	_Parameters:
-	occupied (list): occupied positions
-	width (int): width of board
-	height (int): height of board 
-	head (list): xy pos of head ex. [3,5]
-
-	_Returns:
-	moves (list): A list of strings with (x,y) coordinates containing moves that do not run into occupied space
-	"""
-	
-	moves = {}
-	# Check if the position left of the head is occupied OR out of bounds
-	if not (([head[0]-1,head[1]] in occupied) or (head[0]-1 < 0)) :
-		item = {'left': [head[0]-1,head[1]] }
-		moves.update(item)
-	# Check if the position right of the head is occupied OR out of bounds
-	if not (([head[0]+1,head[1]] in occupied) or (head[0]+1 > width-1)) :
-		item = {'right': [head[0]+1,head[1]] }
-		moves.update(item) 
-	# Check if the position up of the head is occupied OR out of bounds
-	if not (([head[0],head[1]-1] in occupied) or (head[1]-1 < 0)) :
-		item = {'up': [head[0],head[1]-1] }
-		moves.update(item)
-	# Check if the position down of the head is occupied OR out of bounds
-	if not (([head[0],head[1]+1] in occupied) or (head[1]+1 > height-1)) :
-		item = {'down': [head[0],head[1]+1] }
-		moves.update(item)
-
-	return moves
 
 def stratMoves(legalMoves, occupiedList, foodList, head, hp):
 	# Will get food if hp is less than 75

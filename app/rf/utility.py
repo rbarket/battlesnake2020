@@ -1,5 +1,6 @@
+#@TODO INCOMPLETE
 def smallestDistanceItem(itemA, itemB, returnType):
-    """
+    """ @TODOIMCOMPLETE
     _Method: smallestDistanceItem(itemA, itemB, returnType):
 
     _Purpose:
@@ -74,9 +75,9 @@ def checkBubbleScore(point, occupied, width, height):
 		score += 1
     return score
     
-#
-def checkBubbleUpdate(point, occupied, width, height):
-    """
+#@TODO INCOMPLETE FUNCTION
+def checkBubbleTODO(point, occupied, width, height):
+    """ INCOMPLETE FUNCTION @TODO
     _Method: checkBubbleScore(point, occupied, width, height)
 
     _Purpose:
@@ -106,9 +107,50 @@ def checkBubbleUpdate(point, occupied, width, height):
 	if not (([point[0],point[1]+1] in occupied) or (point[1]+1 > height-1)) :
 		return 1
 
+def checkBubbleOutBound(point, checkFor, width, height):
+    """
+    _Method: checkBubbleScore(point, checkFor, width, height)
+
+    _Purpose:
+    To check the left, right, down, and up position, of the current position we are evaluating to see if
+    they include unfavourable elements
+
+    _Parameters:
+	point(dict): Coordinates of the current position we are evaluating
+    checkFor(list): List of coordinates that we want to check for. We can check if they are occupied or food
+    width(int): Maximum width of the game board
+    height(int): Maximum height of the game board
+
+    _Returns:
+	moves(list): A list of moves that do not have unfavourable elements
+    """
+
+    moves = {}
+
+    # Check if each the list of directions we obtained includes unfavourable elements OR if it's out of bounds
+    # We only add a list of directions from the list we obtained if they are not unfavourable
     
+    # LEFT
+    if not (( (point[0]-1, point[1]) in checkFor) or (point[0]-1 < 0)) :
+	    item = {'left': (point[0]-1,point[1]) }
+	    moves.update(item)
+    # RIGHT
+    if not (( (point[0]+1,point[1]) in checkFor) or (point[0]+1 > width-1)) :
+		item = {'right': (point[0]+1,point[1]) }
+		moves.update(item) 
+    # UP
+    if not (( (point[0],point[1]-1) in checkFor) or (point[1]-1 < 0)) :
+		item = {'up': (point[0],point[1]-1) }
+		moves.update(item)
+    # DOWN
+    if not (( (point[0],point[1]+1) in checkFor) or (point[1]+1 > height-1)) :
+		item = {'down': (point[0],point[1]+1) }
+		moves.update(item)
 
+    return moves
 
+def closestItem(point, itemList):
+    
 
 
 

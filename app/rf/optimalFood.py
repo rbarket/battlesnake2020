@@ -1,5 +1,5 @@
 from math import sqrt
-from utility import *
+import rf.utility as util
 def getFoodList(moves, foodList, head):
 	""" 
 	@TODO FUNCTION UNCONSTRUCTED - At this stage a list of food is uneeded

@@ -1,11 +1,11 @@
 import json
 import os
 import random
-import moveChoice
 
 import bottle
 from bottle import HTTPResponse
 
+from rF.moveChoice import action
 
 @bottle.route("/")
 def index():
@@ -27,7 +27,7 @@ def start():
     Your response will control how your snake is displayed on the board.
     """
     data = bottle.request.json
-    print("START:", json.dumps(data))
+    # print("START:", json.dumps(data))
 
     response = {"color": "#00000", "headType": "dead", "tailType": "fat-rattle"} # #F1F1F1
     return HTTPResponse(
@@ -45,9 +45,10 @@ def move():
     Your response must include your move of up, down, left, or right.
     """
     data = bottle.request.json
+    print("\n turn number {}".format(data['turn']))
     # print(json.dumps(data, indent=4))
 
-    move = moveChoice.action(data)
+    move = action(data)
 
     # Shouts are messages sent to all the other snakes in the game.
     # Shouts are not displayed on the game board.
