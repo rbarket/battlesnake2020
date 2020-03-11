@@ -32,7 +32,7 @@ def action(data):
 	# Game Board Data
 	width = data['board']['width'] #Max width of game board
 	height = data['board']['height'] #Max height of game board
-	foodLoc = data['board']['food'] #Location of food on game board
+	allFood = data['board']['food'] #Location of food on game board
 	allSnakes = data['board']['data'] #Location of all snakes on the board (Enemy and I)
 		
 	# Test 
@@ -44,7 +44,7 @@ def action(data):
 	# List of coordinates currently ocuppied by food
 	foodList = []
 	# Add and iterate through list of food on the game board
-	for food in foodLoc:
+	for food in allFood:
 		item = [food['x'], food['y']]
 		foodList.append(item)
 	
@@ -67,18 +67,18 @@ def action(data):
 	# Get the coordinates of the most optimal food to go for
 	myFood = optimalFood.getFood(occupiedList, foodList, head, width, height)	
 	# Choose which stratergy to implement, given the information we have
-	result = stratMoves(legalMoves, occupiedList, foodMoves, head, hp)
+	result = stratMoves(legalMoves, occupiedList, myFood, head, hp)
 
 	#res = result
 	#res = optimalFood.getFood(legalMoves, foodList, head)
 	#return res
 	return result
 
-def stratMoves(legalMoves, occupiedList, foodList, head, tail, hp):
+def stratMoves(legalMoves, occupiedList, foodMove, head, tail, hp):
 	# Will get food if hp is less than 75
 	if (hp < 75):
     		print('getting food')
-		res = optimalFood.getFood(legalMoves, occupiedList, foodList, head)
+		res = foodMove
 	# Will chase its own tail if not hungry
 	else:
 		print('chasing tail')

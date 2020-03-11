@@ -74,4 +74,6 @@ def getFood(occupied, foodList, head, width, height):
 	for food, score in foodScoredList.items([1]):
 		if (foodScoredList.items([1]) > bestScore):
 			bestScore = foodScoredList.items([1])
+			bestfood = foodScoredList.items([0])
 	return bestFood
+
