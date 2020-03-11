@@ -1,13 +1,13 @@
 import operator
 
-def scoreMove(moves, snakes, width, height):
+def scoreMove(moves, snakeList, width, height):
 
-	snakeList = []
-	for snake in snakes:
-		snakeBody = snake['body'] # snakeBody = list of body parts for one snake
-		for piece in snakeBody: # iterae through each body piece of that snake
-			part = (piece['x'], piece['y'])
-			snakeList.append(part)
+	# snakeList = []
+	# for snake in snakes:
+	# 	snakeBody = snake['body'] # snakeBody = list of body parts for one snake
+	# 	for piece in snakeBody: # iterae through each body piece of that snake
+	# 		part = (piece['x'], piece['y'])
+	# 		snakeList.append(part)
 
 	scoreDict = {}
 

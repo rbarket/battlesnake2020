@@ -2,7 +2,7 @@ import random
 import json
 
 import app.optimalFood as foodCode
-
+from app.moveScore import scoreMove
 import app.utility as util
 
 def action(data):
@@ -52,7 +52,7 @@ def action(data):
 		
 	else:
 		print('best move of random choice')
-		bestMove = scoreMove(legalMoves, snakes, width, height)
+		bestMove = scoreMove(legalMoves, occupiedList, width, height)
 		res = random.choice(bestMove)
 	return res
 
