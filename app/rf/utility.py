@@ -1,18 +1,18 @@
 #@TODO INCOMPLETE
 def smallestDistanceItem(itemA, itemB, returnType):
     """ @TODOIMCOMPLETE
-    _Method: smallestDistanceItem(itemA, itemB, returnType):
+    Method: smallestDistanceItem(itemA, itemB, returnType):
 
-    _Purpose:
+    Purpose:
     To calculate the smallest distance between itemA to itemB
     Returns the itemB or coordinates of itemB which is the closest to itemA
 
-    _Parameters:
+    Parameters:
 	itemA (dict): The coordinates of itemA (original position)
     itemB (dict): The coordiantes of itemB (item in which we are comparing original position to)
     returnType (string): depending on what the algorithm asks we can return multiple things ["distance", "item", "list", "noList", or "all"]
 
-    _Returns:
+    Returns:
 	smallestVal (int) [distance]: Returns the distance (amount of spaces) between itemA and itemB
     closestItem (dict) [item]: Returns the coordinates of the item closest to itemA
     itemBList (dict) [list]: Returns a dictionary [Key: Distance, Value: Coordinates [x,y]]
@@ -45,19 +45,19 @@ def smallestDistanceItem(itemA, itemB, returnType):
 
 def checkBubbleScore(point, occupied, width, height):
     """
-    _Method: checkBubbleScore(point, occupied, width, height)
+    Method: checkBubbleScore(point, occupied, width, height)
 
-    _Purpose:
+    Purpose:
     To check the left, right, down, and up position, of the current position we are evaluating and
     add +1 to the score, if those positions are free
 
-    _Parameters:
+    Parameters:
 	point(dict): Coordinates of the current position we are evaluating
     occupied(dict): List of coordinates that are currently occupied
     width(int): Maximum width of the game board
     height(int): Maximum height of the game board
 
-    _Returns:
+    Returns:
 	score(int): Initialized at 0, adds 1 to the score if none of the directions (Up, Left, Right, Down) are occupied, and has a maximum score of 4
     """
     score = 0
@@ -109,19 +109,19 @@ def checkBubbleTODO(point, occupied, width, height):
 
 def checkBubbleOutBound(point, checkFor, width, height):
     """
-    _Method: checkBubbleScore(point, checkFor, width, height)
+    Method: checkBubbleScore(point, checkFor, width, height)
 
-    _Purpose:
+    Purpose:
     To check the left, right, down, and up position, of the current position we are evaluating to see if
     they include unfavourable elements
 
-    _Parameters:
+    Parameters:
 	point(dict): Coordinates of the current position we are evaluating
     checkFor(list): List of coordinates that we want to check for. We can check if they are occupied or food
     width(int): Maximum width of the game board
     height(int): Maximum height of the game board
 
-    _Returns:
+    Returns:
 	moves(list): A list of moves that do not have unfavourable elements
     """
 
@@ -150,10 +150,39 @@ def checkBubbleOutBound(point, checkFor, width, height):
     return moves
 
 def closestItem(point, itemList):
-    
+    """
+    Method: closestItem(point, itemList, occupied, width, height)
 
+    Purpose:
+    To find the the closest item from position
 
+    Parameters:
+	point(dict): Current position we want to be evaluted from
+    itemList(dict): List of items we want to find which are the closest
 
+    Returns:
+	closestItem(dict): Coordinates for the closest item from point
+    """
+    closestItem = {}
+    # Arbitrary for initialization and will be replaced when a smaller distance is found
+    smallestDistance = 10000 
+
+    for item, itemCoord in itemList.items():
+        # Get the distance (amount of spaces) between the point and item we are looking at
+        # and replace current smallest distance if it's smaller
+        evaluatedDistance = abs(itemCoord[0] - point[0]) + abs(itemCoord[1] - point[1])
+
+        # test
+        print('move: {}, coord: {}, xDist:{}, yDist:{}, hypotenuse:{}, food:{}'.format(move, coord, xDist, yDist, hyp, food))
+        
+        if (evaluatedDistance > smallestDistance):
+            smallestDistance = evaluatedDistance
+            closestItem = item
+            
+        #test
+        print('best move is {}'.format(closestItem))
+
+    return closestItem
 
 
 

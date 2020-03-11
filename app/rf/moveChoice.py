@@ -8,14 +8,14 @@ from rF.moveScore import scoreMove
 
 def action(data):
 	"""
-	_Purpose:
+	Purpose:
 	Return UP, DOWN, LEFT, or RIGHT based on which move is the best.
 	Will navigate to food when hungry and avoid occupied space
 
-	_Parameters:
+	Parameters:
 	data (str): json format of data returned from the game server
 
-	_Returns:
+	Returns:
 	str:"UP" or "LEFT" or "RIGHT" or "DOWN", a move the snake will do
 
 	"""
@@ -65,8 +65,8 @@ def action(data):
 
 	# Create dictionary of lists of next moves that do not run into occupied space
 	legalMoves = util.checkBubbleOutBound(head, occupiedList, width, height)
-	# Create dictionary of lists of food the snake can go for
-	foodMoves = optimalFood(legalMoves, foodList, head)	
+	# Get the coordinates of the most optimal food to go for
+	myFood = optimalFood.getFood(occupiedList, foodList, head, width, height)	
 	# Choose which stratergy to implement, given the information we have
 	result = stratMoves(legalMoves, occupiedList, foodMoves, head, hp)
 
@@ -83,5 +83,5 @@ def stratMoves(legalMoves, occupiedList, foodList, head, hp):
 	# Will chase its own tail if not hungry
 	else:
 		print('chasing tail')
-		res = tailChase()
+		res = tailChase.action()
 	return res
