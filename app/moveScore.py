@@ -2,12 +2,6 @@ import operator
 
 def scoreMove(moves, snakeList, width, height):
 
-	# snakeList = []
-	# for snake in snakes:
-	# 	snakeBody = snake['body'] # snakeBody = list of body parts for one snake
-	# 	for piece in snakeBody: # iterae through each body piece of that snake
-	# 		part = (piece['x'], piece['y'])
-	# 		snakeList.append(part)
 
 	scoreDict = {}
 
@@ -27,7 +21,7 @@ def check(move, occupied, width, height, n=1):
 	takes a move coord and returns a score based on how many free spaces are around the move of distance n
 
 	_Parameters:
-	move (list): xy coord of the move
+	move (tuple): xy coord of the move
 	occupied (list): xy coords all occupied spaces on board 
 	width (int): width of board
 	height (int): height of board
@@ -36,7 +30,6 @@ def check(move, occupied, width, height, n=1):
 	_Returns:
 	score (int): score of move
 	"""
-
 
 	if (n==0): # base case
 		return 0	
@@ -48,8 +41,6 @@ def check(move, occupied, width, height, n=1):
 
 	score = 0
 	occupied.append(move)
-	# for pos in coordMaker(move):
-
 
 	if not (( left in occupied) or (left[0] < 0)): #left
 		score += 1 + check(left, occupied, width, height, n-1)

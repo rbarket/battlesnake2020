@@ -132,19 +132,19 @@ def checkBubbleOutBound(point, checkFor, width, height):
     
     # LEFT
     if not (( (point[0]-1, point[1]) in checkFor) or (point[0]-1 < 0)) :
-        item = {'left': (point[0]-1,point[1]) }
+        item = {'left': (point[0]-1, point[1]) }
         moves.update(item)
     # RIGHT
     if not (( (point[0]+1,point[1]) in checkFor) or (point[0]+1 > width-1)) :
-        item = {'right': (point[0]+1,point[1]) }
+        item = {'right': (point[0]+1, point[1]) }
         moves.update(item) 
     # UP
     if not (( (point[0],point[1]-1) in checkFor) or (point[1]-1 < 0)) :
-        item = {'up': (point[0],point[1]-1) }
+        item = {'up': (point[0], point[1]-1) }
         moves.update(item)
     # DOWN
     if not (( (point[0],point[1]+1) in checkFor) or (point[1]+1 > height-1)) :
-        item = {'down': (point[0],point[1]+1) }
+        item = {'down': (point[0], point[1]+1) }
         moves.update(item)
 
     return moves
